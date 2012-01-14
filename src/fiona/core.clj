@@ -7,8 +7,24 @@
 (defn x []
   (client/get "http://lrtest02.learningregistry.org/harvest/getrecord?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json}))
 
+(defn doc-data []
+  (let [raw ((client/get "https://node01.public.learningregistry.net/obtain?by_doc_ID=true&request_id=46e312f386e149de99d6c4cf32a4f268" 
+			 {:insecure? true} {:accept :json}) :body)]
+    ;; the parsed body is a map with documents and a resumption token
+    (def docs (first ((json/parse-string raw) "documents")))
+    ;; v is a vector, maybe with many
+    ;; (def v (first (pb "documents")))
+    ;; keys shows "document" and "doc_ID"
+    ;; (keys docs)
+    ;; keys gets the keys for the doc
+    (keys (first (docs "document")))
+    ((first (docs "document")) "keys")
+    )
+  )
+
+
 (defn xx []
-  (json/parse-string (:body (client/get "https://node01.public.learningregistry.net/obtain?by_doc_ID=true&request_id=46e312f386e149de99d6c4cf32a4f268" {:insecure? true} ))))
+  (json/parse-string ((client/get "https://node01.public.learningregistry.net/obtain?by_doc_ID=true&request_id=46e312f386e149de99d6c4cf32a4f268" {:insecure? true}) :body)))
 
 
 (defn body []

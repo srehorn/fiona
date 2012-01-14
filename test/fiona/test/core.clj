@@ -11,9 +11,11 @@
 ;;    )
 ;;  )
 
-(deftest check-xx
-  (println  (xx)))
+;; (deftest check-xx
+;;  (println  (xx)))
 
+(deftest check-doc-data
+  (println (doc-data)))
 
 ;;(deftest check-this-too
 ;;  (let [resp (body3)]
