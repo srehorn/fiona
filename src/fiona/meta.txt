@@ -1,0 +1,7 @@
+;; make functions to return just these elements, keep it simple
+;; a function to return the url
+;; a function to return the doc_ID
+;; 
+<doc url> "a" "lr:lr_resource" ;
+  lr:doc_ID <doc id> ;
+    

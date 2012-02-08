@@ -1,0 +1,21 @@
+
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix lr: <http://myversionofthe_lr_stuff/schema/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<http://tryscience.org/experiments/experiments_saycheese_athome.html> a lr:lr_resource ;
+  lr:doc_ID "46e312f386e149de99d6c4cf32a4f268" ;
+  lr:publishing_node "cad60ef7493246868f6394fa764397c3" ;
+  lr:doc_version "0.23.0" .
+
+<http://tryscience.org/experiments/experiments_saycheese_athome.html> lr:description "Create a chemical reaction that makes cheese! This hands-on activity demonstrates that molecules and atoms are tiny particles that make up everything around us. In this experiment, milk molecules mix with the loose hydrogen atoms in the acid to create a chemical reaction. The molecules in the milk (casein) have a negative charge. The loose hydrogen atoms in the acid have a positive charge. Opposite charges attract, so the casein molecules and loose hydrogen atoms group together and make clumps that you can see (and then eat)." . 
+
+<http://tryscience.org/experiments/experiments_saycheese_athome.html> 
+   lr:create_timestamp "2011-10-28T17:43:35.801844Z" ;
+   dc:title "Say Cheese!" ;								      
+   dc:subject "cheese" ;
+   dc:subject "Grade 2" ;
+   dc:subject "acid" .
+
+
+  
