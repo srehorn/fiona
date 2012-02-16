@@ -23,18 +23,26 @@
   )
 
 
+
+
 (defn xx []
   (json/parse-string ((client/get "https://node01.public.learningregistry.net/obtain?by_doc_ID=true&request_id=46e312f386e149de99d6c4cf32a4f268" {:insecure? true}) :body)))
 
+;; "1508763b13004676ac83a23bed47c39c"
+;; also fails on json parse? Is it just the sandbox server? 
+(defn get-doc [docid]
+  (json/parse-string ( (client/get (format "http://sandbox.learningregistry.org/obtain?request_ID=%s&by_doc_ID=true" docid) {:accept :json :insecure? true}) :body) ))
 
-(defn body []
-  (json/parse-string (:body (client/get "http://lrtest02.learningregistry.org/harvest/getrecord?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json} ))))
+;; this doc id appears to fail due to the json parser and character encoding
+;;(defn body []
+;;  (json/parse-string ((client/get "http://sandbox.learningregistry.org/obtain?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json :insecure? true}) :body) ))
 
-(defn body2 []
-  (first (json/parse-string (:body (client/get "http://lrtest02.learningregistry.org/harvest/getrecord?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json} )))))
+;; this doc id appears to fail due to the json parser and character encoding
+;;(defn body2 []
+;;  (first (json/parse-string (:body (client/get "http://sandbox.learningregistry.org/harvest/getrecord?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json} )))))
 
-(defn body3 []
-  (second (second (json/parse-string (:body (client/get "http://lrtest02.learningregistry.org/harvest/getrecord?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json} ))))))
+;;(defn body3 []
+;;  (second (second (json/parse-string (:body (client/get "http://sandbox.learningregistry.org/harvest/getrecord?request_ID=20bf0aa66ae54f92b67d06e6fa944625&by_doc_ID=true" {:accept :json} ))))))
 
 ;; fails with javax.net peer not authenticated
 ;; this is an https problem
