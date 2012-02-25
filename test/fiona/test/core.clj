@@ -1,19 +1,20 @@
 (ns fiona.test.core
   (:use [fiona.core])
   (:use expectations)
-  ;; (:use [clojure.test])
 )
 
-;; (deftest get-something
-;;  (is (= 200 (:status (x)))))
-
 (expect nil? nil)
-
 
 ;; you can do it this way, but yuck
 ;; (expect (filter (fn [x] (= "Grade 2" x)) (doc-data)) "Grade 2")
 
 (expect (some #{"Grade 2"} (doc-data)) "Grade 2")
+
+(expect "resource_data" ((get-doc "CCTL0028") "doc_type"))
+
+;; expect that you get a block of xml from "resource_data" key location of the document
+;; this is a bunch of dc tags, you might as well just dump the whole thing like that rather
+;; than doing some new mapping? 
 
 ;;(deftest check-this
 ;;  (let [resp (x)]
