@@ -5,5 +5,6 @@
 		 [expectations "1.3.3"]
 		 [data.xml "0.0.3-SNAPSHOT"]
 		 [lein-autoexpect "0.0.2"]
+		 [data.zip "0.0.1-SNAPSHOT"]
 		 [cheshire "2.2.0"]]
   )

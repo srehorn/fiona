@@ -1,12 +1,8 @@
 
 (ns fiona.core
-  (:use [clojure.data.zip.xml])
-  (:require [clj-http.client :as client])
-  (:require [clojure.xml :as xml]
-	    [clojure.zip :as zip])
-  (:require [cheshire.core :as json])
-  ;; (use 'clojure.data.xml)
-  ;; (:require clojure.contrib.zip-filter))
+  (require '[clj-http.client :as client])
+  (require '[cheshire.core :as json])
+  (use 'clojure.data.xml)
 )
 
 ;;
@@ -32,22 +28,9 @@
      "<oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.openarchives.org/OAI/2.0/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\"><dc:creator>J. Koenig</dc:creator><dc:date>2010-01-13T15:52:10Z</dc:date><dc:date>2010-01-13T15:52:10Z</dc:date><dc:date>2010-01-13T15:52:10Z</dc:date><dc:identifier>CCTL0028</dc:identifier><dc:identifier>CCTL0028</dc:identifier><dc:identifier>http://open.jorum.ac.uk:80/xmlui/handle/123456789/369</dc:identifier><dc:description>A learning object that covers rearranging equations by: * adding to/ subtracting from both sides, * multiply/divide both sides, * replace a term by another equal term, * square/square root both sides, * expand out, * simplify (factorise)</dc:description><dc:format>application/x-shockwave-flash</dc:format><dc:language>en</dc:language><dc:language>en</dc:language><dc:language>en</dc:language><dc:rights>Attribution-Share Alike 2.0 UK: England &amp; Wales</dc:rights><dc:rights>http://creativecommons.org/licenses/by-sa/2.0/uk/</dc:rights><dc:subject>equations</dc:subject><dc:subject>rearrange</dc:subject><dc:subject>term</dc:subject><dc:subject>multiply both sides</dc:subject><dc:subject>maths</dc:subject><dc:subject>medics</dc:subject><dc:subject>Biological Sciences</dc:subject><dc:subject>Medicine and Dentistry</dc:subject><dc:subject>Medicine and Dentistry</dc:subject><dc:subject>Veterinary Sciences</dc:subject><dc:title>Rearrange Equations</dc:title></oai_dc:dc>"
 )
 
-;; (defn get-struct-map [xml]
-;;   (let [stream (java.io.ByteArrayInputStream. (.getBytes (.trim xml)))]
-;;    (xmllib/parse stream)))
-
-(defn parse-str [s]
-  (zip/xml-zip (xml/parse (new org.xml.sax.InputSource
-                               (new java.io.StringReader s)))))
-
-(defn subjects [obz]
-  (xml-> obz :dc:subject text))
-
-(defn my-parse [xmlstring]
-  "take a string xml containing xml return an structure"
-  (let [input-xml (java.io.StringReader. xmlstring)]
-    (xml/parse input-xml))
-  )
+(defn get-struct-map [xml]
+  (let [stream (java.io.ByteArrayInputStream. (.getBytes (.trim xml)))]
+    (xml/parse stream)))
 
 ;; see this article to use a zipper: http://techbehindtech.com/2010/06/25/parsing-xml-in-clojure/
 
