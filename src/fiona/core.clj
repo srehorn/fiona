@@ -1,4 +1,3 @@
-
 (ns fiona.core
   (:use [clojure.data.zip.xml])
   (:require [clj-http.client :as client])
@@ -13,19 +12,23 @@
 ;; there was some kind of strange encoding in here that wasn't visible in emacs (maybe introduced by fancy copy-paste in mac?)
 ;; go figure
 ;;
+;; watch out for case-sensitivity here, dang it. You fixed it on the other machine
+;; and forgot about it. 
 (defn geth [docid]
-  (let [url (format "http://sandbox.learningregistry.org/obtain?request_id=%s&by_doc_id=true" docid)]
+  (let [url (format "http://sandbox.learningregistry.org/obtain?request_ID=%s&by_doc_ID=true" docid)]
     (client/get url {:accept :json} {:insecure? true} ) )
   )
 
 
 (defn get-doc [docid]
+  "retrieves the document named by id and returns the json-encoded body"
   (let [doc (json/parse-string ((geth docid) :body))]
     (first ((first (doc "documents")) "document"))
     )
   )
 
 (defn get-resource [d]
+  "takes a json structure of a document and returns the 'resource_data' item"
   (d "resource_data"))
 
 (def tmp 
@@ -41,6 +44,7 @@
                                (new java.io.StringReader s)))))
 
 (defn subjects [obz]
+  "takes a zipper struct for a document and returns a list of strings, the subjects"
   (xml-> obz :dc:subject text))
 
 (defn my-parse [xmlstring]
@@ -108,3 +112,5 @@
 ;; (defn xx []
 ;;   (json/parse-string ((client/get "https://node01.public.learningregistry.net/obtain?by_doc_ID=true&request_id=46e312f386e149de99d6c4cf32a4f268" {:insecure? true}) :body)))
 
+
+;; http://sandbox.learningregistry.org/slice?any_tags=cheese&ids_only=true

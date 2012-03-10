@@ -16,12 +16,16 @@
 
 (expect "resource_data" ((get-doc "CCTL0028") "doc_type"))
 
+;; (println (subjects (parse-str sample)))
+
+(expect "medics" (in (subjects (parse-str sample))))
+
 ;; (given [key] (expect key (in (keys (get-os-jmxbean))))
 ;;       :Arch :FreeSwapSpaceSize)
 
-(given [x] (expect x (in (keys (my-parse tmp))))
-       :content)
-
+;; (given [x] (expect x (in (keys (my-parse tmp))))
+;;       :content)
+;; (given [x] (expect x (in (keys (parse-str tmp)))) :content)
 
 
 ;; expect that you get a block of xml from "resource_data" key location of the document
